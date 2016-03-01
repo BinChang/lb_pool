@@ -194,6 +194,7 @@ PoolEndpoint.prototype.request_succeeded = function (request, response, body) {
 PoolEndpoint.prototype.request_failed = function (err, request) {
     this.failures++;
     if (!request.destroyed) {
+
         this.set_healthy(false);
     }
     this.complete(err, request);
@@ -212,6 +213,11 @@ PoolEndpoint.prototype.set_healthy = function (new_state) {
     if (! this.ping_path) {
         return; // an endpoint with no pingPath can never be made unhealthy
     }
+    console.log("set_healthy", {
+        ip: this.ip,
+        port: this.port,
+        new_state: new_state
+    });
     if (! new_state) {
         this.pinger.start();
     }

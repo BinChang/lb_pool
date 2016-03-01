@@ -1,6 +1,7 @@
 var LB_Pool = require("../index.js").Pool;
 
 var servers = [
+    "1.2.3.4:80",
     "216.58.192.14:1234",
     "216.58.192.14:80",
 ];
